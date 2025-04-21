@@ -56,6 +56,8 @@ Route::prefix('site1')->name('site1.')->controller(SiteOneController::class)->gr
     Route::get('/ok' ,  'ok')->name('ok');
     Route::post('/contact', 'postcontact')->name('postcontact');
     Route::get('/viewcontact', 'viewcontact')->name('viewcontact');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/edit/{id}', 'edit')->name('edit');
 });
 
 

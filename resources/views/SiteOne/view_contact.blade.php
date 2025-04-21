@@ -21,6 +21,7 @@
           <th>IMAGE</th>
           <th>CERATEDAT</th>
           <th>UPDATEDAT</th>
+          <th>ACTION UPDATE</th>
         </tr>
       </thead>
       <tbody>
@@ -34,6 +35,7 @@
         <td><img style="width: 70px" src="{{ asset('uploads/' . $c->image) }}"></td>
         <td>{{ $c->created_at }}</td>
         <td>{{ $c->updated_at }}</td>
+        <td><a class="btn btn-info" href="{{ route('site1.edit' , $c->id) }}">edit</a></td>
       </tr>
        @endforeach
 

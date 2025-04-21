@@ -74,4 +74,35 @@ class SiteOneController extends Controller
         return redirect()->route('site1.ok') ;
 
     }
+
+    function edit($id) {
+       $contact = Contact::find($id);
+       return view('SiteOne.edit' , compact('contact'));
+    }
+
+
+        function update(Request $request) {
+            // dd($request->all());
+            // $contact = Contact::find(150);
+             $contact = Contact::query()->findOrFail($request->id);
+            //$contact = Contact::query()->where('id' , $request->id)->get();
+            if($request->hasFile('image')){
+                $name = 'SiteOne_' . time() . '_' . rand() . '.' .$request->file('image') ->getClientOriginalExtension() ;
+                $request->file('image')->move(public_path('uploads') , $name );
+
+                $contact->update([
+                    'image' => $name ,
+                ]);
+            }
+
+            
+            $contact->update([
+                 'name' => $request->name ,
+                 'email' => $request->email ,
+                 'phone' => $request->phone ,
+                 'msg' => $request->msg ,
+            ]);
+
+            return redirect()->route('site1.viewcontact');
+        }
 }
